@@ -16,6 +16,8 @@ public class InterfazPrincipal extends javax.swing.JFrame {
      */
     public InterfazPrincipal() {
         initComponents();
+        setLocationRelativeTo(null);
+
     }
 
     /**
@@ -138,11 +140,12 @@ public class InterfazPrincipal extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(InterfazPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new InterfazPrincipal().setVisible(true);
+
             }
         });
     }
