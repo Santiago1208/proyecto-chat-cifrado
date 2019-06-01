@@ -75,7 +75,7 @@ public class login extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("Dirección IP del amigo:");
+        jLabel2.setText("Dirección IP del servidor:");
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/resources/logi.jpg"))); // NOI18N
 
