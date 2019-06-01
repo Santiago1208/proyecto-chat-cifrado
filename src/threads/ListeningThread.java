@@ -1,12 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package threads;
 
 import java.io.IOException;
 import java.net.ServerSocket;
+import model.User;
 
 /**
  * Thread responsible for attend new connections for the clients.
@@ -23,12 +19,18 @@ public class ListeningThread extends Thread {
      */
     private final ServerSocket server;
     
+    /**
+     * Represents the user listening.
+     */
+    private User user;
+    
     // ---------------------------------------------------------------------------------------------------
     // Constructor
     // ---------------------------------------------------------------------------------------------------
 
-    public ListeningThread(ServerSocket server) {
+    public ListeningThread(ServerSocket server, User user) {
         this.server = server;
+        this.user = user;
     }    
 
     // ---------------------------------------------------------------------------------------------------
