@@ -10,6 +10,8 @@ package co.edu.icesi.ciberSecurityProject.server;
  */
 public class ServerFrame extends javax.swing.JFrame {
 
+    
+    
     /**
      * Creates new form ServerFrame
      */
@@ -17,14 +19,15 @@ public class ServerFrame extends javax.swing.JFrame {
         initComponents();
     }
 
-   // public void actualizarListaUsuarios(User usuario, String estado){
-      //     if(estado.equals("online")){
-     //          jList1.
-      //     }
-      //     else if (estado.equals("offline")){
+    //cambiar a inglés signatura
+    public void updateUserList(User user){
+           if(user.state.equals("online")){
+               jList1.
+           }
+           else if (user.state.equals("offline")){
             
-       //    }
-    //   }
+           }
+       }
     
     /**
      * This method is called from within the constructor to initialize the form.
