@@ -3,8 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package main;
+package co.edu.icesi.ciberSecurityProject.client.gui;
 
+import co.edu.icesi.ciberSecurityProject.client.gui.ClientChat;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
