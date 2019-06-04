@@ -5,20 +5,33 @@
  */
 package co.edu.icesi.ciberSecurityProject.client.gui;
 
+import co.edu.icesi.ciberSecurityProject.model.User;
+
 /**
  *
  * @author azo_6
  */
 public class ClientChat extends javax.swing.JFrame {
 
+    private User userToChat;
+    
     /**
      * Creates new form InterfazPrincipal
      */
-    public ClientChat() {
+    public ClientChat(User userSelected) {
         initComponents();
         setLocationRelativeTo(null);
-          
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        userToChat = userSelected;
     }
+    
+    private void listening(){
+        ClientListeningThread currentClient = new ClientListeningThread(this, null);
+    }
+    
+    public void dispose(){
+        
+}
 
     public void messageConcatenation(String message){
         messageHistory.append(message+"\n");

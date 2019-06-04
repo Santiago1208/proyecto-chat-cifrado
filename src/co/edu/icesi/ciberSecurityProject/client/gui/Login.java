@@ -6,6 +6,8 @@
 package co.edu.icesi.ciberSecurityProject.client.gui;
 
 import co.edu.icesi.ciberSecurityProject.client.gui.ClientChat;
+import co.edu.icesi.ciberSecurityProject.model.Commands;
+import co.edu.icesi.ciberSecurityProject.model.User;
 import co.edu.icesi.ciberSecurityProject.server.ServerFrame;
 import java.text.ParseException;
 import java.util.logging.Level;
@@ -20,7 +22,7 @@ import javax.swing.text.MaskFormatter;
  */
 public class Login extends javax.swing.JFrame {
 
-            ServerFrame inter;
+            ClientsConnected clientsConnected;
     
     /**
      * Creates new form login
@@ -133,9 +135,12 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        inter = new ServerFrame();
-        inter.setVisible(true);
+        User newUser = new User(jTextField1.getText(), "", Commands.CONNECTED);
+        clientsConnected = new ClientsConnected(newUser);
+        clientsConnected.setVisible(true);
         this.setVisible(false);
+        
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public static void main(String args[]) {

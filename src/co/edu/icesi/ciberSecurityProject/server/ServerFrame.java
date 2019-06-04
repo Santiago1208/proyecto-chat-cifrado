@@ -1,6 +1,7 @@
 package co.edu.icesi.ciberSecurityProject.server;
 
 import co.edu.icesi.ciberSecurityProject.model.Commands;
+import co.edu.icesi.ciberSecurityProject.model.Conversation;
 import co.edu.icesi.ciberSecurityProject.model.User;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
@@ -16,7 +17,7 @@ public class ServerFrame extends javax.swing.JFrame {
     
     private DefaultListModel listModel;
 
-
+    private ArrayList<Conversation> conversations;
     
     /**
      * Creates new form ServerFrame
@@ -50,6 +51,14 @@ public class ServerFrame extends javax.swing.JFrame {
             listModel.remove(index);
            }
        }
+    
+        public ArrayList<Conversation> getConversations() {
+        return conversations;
+    }
+
+    public void setConversations(ArrayList<Conversation> conversations) {
+        this.conversations = conversations;
+    }
     
     /**
      * This method is called from within the constructor to initialize the form.
