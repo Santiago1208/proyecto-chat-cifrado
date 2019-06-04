@@ -53,6 +53,7 @@ public class ClientChat extends javax.swing.JFrame {
         jButton1.setText("Desloguear");
 
         jTextArea2.setColumns(20);
+        jTextArea2.setLineWrap(true);
         jTextArea2.setRows(5);
         jScrollPane2.setViewportView(jTextArea2);
 

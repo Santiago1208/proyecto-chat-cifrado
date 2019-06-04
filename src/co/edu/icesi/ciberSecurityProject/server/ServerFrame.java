@@ -22,6 +22,8 @@ public class ServerFrame extends javax.swing.JFrame {
      */
     public ServerFrame() {
         initComponents();
+        setLocationRelativeTo(null);
+        setResizable(false);
         listModel = new DefaultListModel();
         jList1 = new JList(listModel);
     }
