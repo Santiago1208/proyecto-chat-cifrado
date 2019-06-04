@@ -53,6 +53,8 @@ public class ServerFrame extends javax.swing.JFrame {
        }
     
         public ArrayList<Conversation> getConversations() {
+            
+            
         return conversations;
     }
 

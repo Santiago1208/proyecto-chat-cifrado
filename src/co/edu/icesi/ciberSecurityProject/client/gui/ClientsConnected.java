@@ -6,11 +6,17 @@
 package co.edu.icesi.ciberSecurityProject.client.gui;
 
 import co.edu.icesi.ciberSecurityProject.model.Commands;
+import co.edu.icesi.ciberSecurityProject.model.ConversationDataPackage;
 import co.edu.icesi.ciberSecurityProject.model.User;
 import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.ListModel;
@@ -22,7 +28,7 @@ import javax.swing.ListModel;
 public class ClientsConnected extends javax.swing.JFrame {
 
     private DefaultListModel listModel;
-
+    
     private User userLoggedIn;     
     /**
      * Creates new form ClientsConnected
@@ -32,18 +38,17 @@ public class ClientsConnected extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         setResizable(false);
         userLoggedIn = newUser;
-        
         jList1.addMouseListener(new MouseAdapter() {
     public void mouseClicked(MouseEvent evt) {
       
-        JList list = (JList)evt.getSource();
         if (evt.getClickCount() == 2) {
 
             Rectangle r = jList1.getCellBounds(0, jList1.getLastVisibleIndex()); 
 
                 if (r != null && r.contains(evt.getPoint())) { 
                     int index = jList1.locationToIndex(evt.getPoint()); 
-                    ClientChat nuevoChat = new ClientChat();
+                    
+                  
                 } 
         } else if (evt.getClickCount() == 3) {
 
@@ -55,6 +60,21 @@ public class ClientsConnected extends javax.swing.JFrame {
         }
     }
 });
+    }
+    
+    public void fulfillOnlineUserList(){
+                  Socket s;
+                   try {
+                   s = new Socket("",9999);
+                   ObjectOutputStream OUS = new ObjectOutputStream(s.getOutputStream());
+
+                } catch (IOException ex) {
+                  Logger.getLogger(ClientsConnected.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                  ConversationDataPackage CDP = new ConversationDataPackage();
+                  
+                  
+                 // ClientChat nuevoChat = new ClientChat(onlineUserList().get(index));
     }
 
     /**
@@ -118,11 +138,11 @@ public class ClientsConnected extends javax.swing.JFrame {
     
     public void updateUserList(User user){
            if(user.getState().equals(Commands.CONNECTED)){
-               listModel.addElement("user.nickname");
+               listModel.addElement(user);
            }
            else if (user.getState().equals("offline")){
             DefaultListModel model = (DefaultListModel)jList1.getModel();
-            int index = model.indexOf(user.getNickname());
+            int index = model.indexOf(user);
             listModel.remove(index);
            }
        }
