@@ -5,6 +5,7 @@
  */
 package co.edu.icesi.ciberSecurityProject.server;
 
+import co.edu.icesi.ciberSecurityProject.model.User;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
 import javax.swing.JList;
@@ -42,12 +43,12 @@ public class ServerFrame extends javax.swing.JFrame {
     }
     
     public void updateUserList(User user){
-           if(user.state.equals("online")){
+           if(user.getState().equals("online")){
                listModel.addElement("user.nickname");
            }
-           else if (user.state.equals("offline")){
+           else if (user.getState().equals("offline")){
             DefaultListModel model = (DefaultListModel)jList1.getModel();
-            int index = model.indexOf(user.nickname);
+            int index = model.indexOf(user.getNickname());
             listModel.remove(index);
            }
        }
