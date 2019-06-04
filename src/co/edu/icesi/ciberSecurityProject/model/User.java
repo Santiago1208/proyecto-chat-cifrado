@@ -28,6 +28,19 @@ public class User {
         conversations = new ArrayList<>();
     }
     
+    public void addConversation(Conversation c) {
+        String friendIPAddress = c.getFriend().getIpAddress();
+        boolean exists = false;
+        for (int i = 0; i < conversations.size(); i++) {
+            Conversation current = conversations.get(i);
+            if (current.getFriend().getIpAddress().equals(friendIPAddress)) {
+                exists = true;
+            }
+        }
+        if (!exists) {
+            conversations.add(c);
+        }
+    }
     
 
     public String getNickname() {
