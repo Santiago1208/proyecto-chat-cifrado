@@ -9,6 +9,13 @@ package co.edu.icesi.ciberSecurityProject.client.gui;
  *
  * @author azo_6
  */
-public class ClientsConnectedListenener {
+public class ClientsConnectedListenener extends Thread {
+
+        private ClientsConnected cc;
+
+    public ClientsConnectedListenener(ClientsConnected cc) {
+        this.cc = cc;
+    }
+    // = new ClientsConnected()
     
 }
