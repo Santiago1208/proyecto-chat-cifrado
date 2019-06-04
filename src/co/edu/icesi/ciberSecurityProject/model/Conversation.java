@@ -1,12 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.edu.icesi.ciberSecurityProject.model;
 
-import java.security.PrivateKey;
-import java.security.PublicKey;
+import java.security.KeyPair;
 import javax.crypto.KeyAgreement;
 
 /**
@@ -15,69 +9,53 @@ import javax.crypto.KeyAgreement;
  */
 public class Conversation {
     
-    private User logged;
+    private String loggedIPAddress;
     
-    private User friend;
+    private String friendIPAddress;
     
-    private PublicKey publicKey;
+    private KeyPair userKeyPair;
     
-    private PrivateKey privateKey;
-    
-    private PublicKey friendPublicKey;
-    
-    private PrivateKey friendPrivateKey;
+    private KeyPair friendKeyPair;
     
     private KeyAgreement commonKey;
 
-    public User getLogged() {
-        return logged;
+    public Conversation(String loggedIPAddress, String friendIPAddress) {
+        this.loggedIPAddress = loggedIPAddress;
+        this.friendIPAddress = friendIPAddress;
     }
 
-    public void setLogged(User logged) {
-        this.logged = logged;
+    public String getLoggedIPAddress() {
+        return loggedIPAddress;
     }
 
-    public User getFriend() {
-        return friend;
+    public void setLoggedIPAddress(String loggedIPAddress) {
+        this.loggedIPAddress = loggedIPAddress;
     }
 
-    public void setFriend(User friend) {
-        this.friend = friend;
+    public String getFriendIPAddress() {
+        return friendIPAddress;
     }
 
-    public PublicKey getPublicKey() {
-        return publicKey;
+    public void setFriendIPAddress(String friendIPAddress) {
+        this.friendIPAddress = friendIPAddress;
     }
 
-    public void setPublicKey(PublicKey publicKey) {
-        this.publicKey = publicKey;
+    public KeyPair getUserKeyPair() {
+        return userKeyPair;
     }
 
-    public PrivateKey getPrivateKey() {
-        return privateKey;
+    public void setUserKeyPair(KeyPair userKeyPair) {
+        this.userKeyPair = userKeyPair;
     }
 
-    public void setPrivateKey(PrivateKey privateKey) {
-        this.privateKey = privateKey;
+    public KeyPair getFriendKeyPair() {
+        return friendKeyPair;
     }
 
-    public PublicKey getFriendPublicKey() {
-        return friendPublicKey;
-    }
-
-    public void setFriendPublicKey(PublicKey friendPublicKey) {
-        this.friendPublicKey = friendPublicKey;
-    }
-
-    public PrivateKey getFriendPrivateKey() {
-        return friendPrivateKey;
-    }
-
-    public void setFriendPrivateKey(PrivateKey friendPrivateKey) {
-        this.friendPrivateKey = friendPrivateKey;
+    public void setFriendKeyPair(KeyPair friendKeyPair) {
+        this.friendKeyPair = friendKeyPair;
     }
     
-
     public KeyAgreement getCommonKey() {
         return commonKey;
     }

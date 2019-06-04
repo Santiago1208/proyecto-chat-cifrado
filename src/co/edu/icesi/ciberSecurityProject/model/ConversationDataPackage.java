@@ -1,6 +1,7 @@
 package co.edu.icesi.ciberSecurityProject.model;
 
 import java.io.Serializable;
+import java.security.KeyPair;
 
 /**
  *
@@ -17,6 +18,10 @@ public class ConversationDataPackage implements Serializable {
     private String message;
     
     private String code;
+    
+    private KeyPair userKeys;
+    
+    private KeyPair friendKeys;
 
     public ConversationDataPackage() {
     
@@ -70,5 +75,25 @@ public class ConversationDataPackage implements Serializable {
     public void setCode(String code) {
         this.code = code;
     }
+
+    public KeyPair getUserKeys() {
+        return userKeys;
+    }
+
+    public void setUserKeys(KeyPair keys) {
+        this.userKeys = keys;
+    }
+
+    public KeyPair getFriendKeys() {
+        return friendKeys;
+    }
+
+    public void setFriendKeys(KeyPair friendKeys) {
+        this.friendKeys = friendKeys;
+    }
+    
+    
+    
+    
     
 }

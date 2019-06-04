@@ -19,4 +19,6 @@ public class Commands {
     
     public final static String START_CONVERSATION = "Iniciar conversación";
     
+    public final static String DH_KEYS = "DH_KEYS";
+    
 }

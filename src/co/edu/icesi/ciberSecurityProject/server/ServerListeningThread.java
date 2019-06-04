@@ -1,6 +1,7 @@
 package co.edu.icesi.ciberSecurityProject.server;
 
 import co.edu.icesi.ciberSecurityProject.model.Commands;
+import co.edu.icesi.ciberSecurityProject.model.Conversation;
 import co.edu.icesi.ciberSecurityProject.model.ConversationDataPackage;
 import co.edu.icesi.ciberSecurityProject.model.User;
 import java.io.IOException;
@@ -46,6 +47,11 @@ public class ServerListeningThread extends Thread {
             //owner.addUser(u)
         } else if (code.equals(Commands.DISCONNECT)) {
             //owner.removeUser(data.getUserNickName());
+        } else if (code.equals(Commands.START_CONVERSATION)) {
+            Conversation c = new Conversation(data.getIpAddress(), data.getFriendIPAddress());
+            owner.addConversation(c);
+            data.setCode(Commands.DH_KEYS);
+            redirectMessage(data);
         } else {
             redirectMessage(data);
         }

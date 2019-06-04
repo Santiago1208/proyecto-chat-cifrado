@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package co.edu.icesi.ciberSecurityProject.client.gui;
 
 import co.edu.icesi.ciberSecurityProject.model.Commands;
@@ -12,13 +7,16 @@ import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
+import java.security.KeyPair;
+import java.security.KeyPairGenerator;
+import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
-import javax.swing.JList;
 import javax.swing.ListModel;
 
 /**
@@ -28,8 +26,9 @@ import javax.swing.ListModel;
 public class ClientsConnected extends javax.swing.JFrame {
 
     private DefaultListModel listModel;
-    
-    private User userLoggedIn;     
+
+    private User userLoggedIn;
+
     /**
      * Creates new form ClientsConnected
      */
@@ -39,42 +38,66 @@ public class ClientsConnected extends javax.swing.JFrame {
         setResizable(false);
         userLoggedIn = newUser;
         jList1.addMouseListener(new MouseAdapter() {
-    public void mouseClicked(MouseEvent evt) {
-      
-        if (evt.getClickCount() == 2) {
+            public void mouseClicked(MouseEvent evt) {
 
-            Rectangle r = jList1.getCellBounds(0, jList1.getLastVisibleIndex()); 
+                if (evt.getClickCount() == 2) {
 
-                if (r != null && r.contains(evt.getPoint())) { 
-                    int index = jList1.locationToIndex(evt.getPoint()); 
-                    
-                  
-                } 
-        } else if (evt.getClickCount() == 3) {
+                    Rectangle r = jList1.getCellBounds(0, jList1.getLastVisibleIndex());
 
-            Rectangle r = jList1.getCellBounds(0, jList1.getLastVisibleIndex()); 
+                    if (r != null && r.contains(evt.getPoint())) {
+                        //int index = jList1.locationToIndex(evt.getPoint());
+                        User u = (User)jList1.getSelectedValue();
+                        try {
+                            Socket channel = new Socket("host del server", 9999);
+                            ObjectOutputStream in = new ObjectOutputStream(channel.getOutputStream());
+                            ConversationDataPackage data = new ConversationDataPackage();
+                            KeyPair keys = generateKeyPair();
+                            data.setUserKeys(keys);
+                            data.setUserNickName(userLoggedIn.getNickname());
+                            data.setIpAddress(userLoggedIn.getIpAddress());
+                            data.setFriendIPAddress(u.getIpAddress());
+                            data.setCode(Commands.START_CONVERSATION);
+                            in.writeObject(data);
+                            in.close();
+                            channel.close();
+                            
+                        } catch (IOException ex) {
+                            Logger.getLogger(ClientsConnected.class.getName()).log(Level.SEVERE, null, ex);
+                        } catch (NoSuchAlgorithmException ex) {
+                            Logger.getLogger(ClientsConnected.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                } else if (evt.getClickCount() == 3) {
 
-                if (r != null && r.contains(evt.getPoint())) { 
-                    int index = jList1.locationToIndex(evt.getPoint()); 
-                 }     
-        }
-    }
-});
+                    Rectangle r = jList1.getCellBounds(0, jList1.getLastVisibleIndex());
+
+                    if (r != null && r.contains(evt.getPoint())) {
+                        int index = jList1.locationToIndex(evt.getPoint());
+                    }
+                }
+            }
+        });
     }
     
-    public void fulfillOnlineUserList(){
-                  Socket s;
-                   try {
-                   s = new Socket("",9999);
-                   ObjectOutputStream OUS = new ObjectOutputStream(s.getOutputStream());
+    private KeyPair generateKeyPair() throws NoSuchAlgorithmException {
+        KeyPairGenerator keyGenerator = KeyPairGenerator.getInstance("DH");
+        keyGenerator.initialize(1024);
+        KeyPair pair = keyGenerator.generateKeyPair();
+        return pair;
+    }
 
-                } catch (IOException ex) {
-                  Logger.getLogger(ClientsConnected.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                  ConversationDataPackage CDP = new ConversationDataPackage();
-                  
-                  
-                 // ClientChat nuevoChat = new ClientChat(onlineUserList().get(index));
+    public void fulfillOnlineUserList() {
+        Socket s;
+        try {
+            s = new Socket("", 9999);
+            ObjectOutputStream OUS = new ObjectOutputStream(s.getOutputStream());
+
+        } catch (IOException ex) {
+            Logger.getLogger(ClientsConnected.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        ConversationDataPackage CDP = new ConversationDataPackage();
+
+        // ClientChat nuevoChat = new ClientChat(onlineUserList().get(index));
     }
 
     /**
@@ -125,28 +148,27 @@ public class ClientsConnected extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-        public ArrayList onlineUserList(){
+    public ArrayList onlineUserList() {
         ArrayList list = new ArrayList();
         ListModel model = jList1.getModel();
 
-        for(int i=0; i < model.getSize(); i++){
-        Object o =  model.getElementAt(i);
-        list.add((String)o);
+        for (int i = 0; i < model.getSize(); i++) {
+            Object o = model.getElementAt(i);
+            list.add((String) o);
         }
         return list;
     }
-    
-    public void updateUserList(User user){
-           if(user.getState().equals(Commands.CONNECTED)){
-               listModel.addElement(user);
-           }
-           else if (user.getState().equals("offline")){
-            DefaultListModel model = (DefaultListModel)jList1.getModel();
+
+    public void updateUserList(User user) {
+        if (user.getState().equals(Commands.CONNECTED)) {
+            listModel.addElement(user);
+        } else if (user.getState().equals("offline")) {
+            DefaultListModel model = (DefaultListModel) jList1.getModel();
             int index = model.indexOf(user);
             listModel.remove(index);
-           }
-       }
-  
+        }
+    }
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JList jList1;

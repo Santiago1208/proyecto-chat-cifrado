@@ -14,11 +14,10 @@ import javax.swing.ListModel;
  */
 public class ServerFrame extends javax.swing.JFrame {
 
-    
     private DefaultListModel listModel;
 
     private ArrayList<Conversation> conversations;
-    
+
     /**
      * Creates new form ServerFrame
      */
@@ -30,38 +29,40 @@ public class ServerFrame extends javax.swing.JFrame {
         jList1 = new JList(listModel);
     }
 
-    public ArrayList onlineUserList(){
+    public ArrayList onlineUserList() {
         ArrayList list = new ArrayList();
         ListModel model = jList1.getModel();
 
-        for(int i=0; i < model.getSize(); i++){
-        Object o =  model.getElementAt(i);
-        list.add((String)o);
+        for (int i = 0; i < model.getSize(); i++) {
+            Object o = model.getElementAt(i);
+            list.add((String) o);
         }
         return list;
     }
-    
-    public void updateUserList(User user){
-           if(user.getState().equals(Commands.CONNECTED)){
-               listModel.addElement("user.nickname");
-           }
-           else if (user.getState().equals("offline")){
-            DefaultListModel model = (DefaultListModel)jList1.getModel();
+
+    public void updateUserList(User user) {
+        if (user.getState().equals(Commands.CONNECTED)) {
+            listModel.addElement("user.nickname");
+        } else if (user.getState().equals("offline")) {
+            DefaultListModel model = (DefaultListModel) jList1.getModel();
             int index = model.indexOf(user.getNickname());
             listModel.remove(index);
-           }
-       }
-    
-        public ArrayList<Conversation> getConversations() {
-            
-            
+        }
+    }
+
+    public ArrayList<Conversation> getConversations() {
+
         return conversations;
+    }
+    
+    public void addConversation(Conversation c) {
+        
     }
 
     public void setConversations(ArrayList<Conversation> conversations) {
         this.conversations = conversations;
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

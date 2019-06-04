@@ -1,12 +1,10 @@
 package co.edu.icesi.ciberSecurityProject.client.gui;
 
 import co.edu.icesi.ciberSecurityProject.model.Commands;
-import co.edu.icesi.ciberSecurityProject.model.Conversation;
 import co.edu.icesi.ciberSecurityProject.model.ConversationDataPackage;
 import co.edu.icesi.ciberSecurityProject.model.User;
 import java.io.IOException;
 import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.logging.Level;
@@ -44,13 +42,7 @@ public class ClientListeningThread extends Thread {
     
     public void processCommand(ConversationDataPackage data) {
         String code = data.getCode();
-        if (code.equals(Commands.START_CONVERSATION)) {
-            Conversation c = new Conversation();
-            logged.addConversation(c);
-        } else {
-            // desencriptar mensaje
-            // concatenar mensaje a la vista
-        }
+        
     }
     
 }
