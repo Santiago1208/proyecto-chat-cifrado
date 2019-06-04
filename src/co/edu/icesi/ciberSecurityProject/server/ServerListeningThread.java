@@ -40,7 +40,7 @@ public class ServerListeningThread extends Thread {
         }
     }
 
-    private void processPackage(ConversationDataPackage data) {
+    private void processPackage(ConversationDataPackage data) throws IOException {
         String code = data.getCode();
         if (code.equals(Commands.CONNECT)) {
             User u = new User(data.getUserNickName(), data.getFriendIPAddress(), Commands.CONNECTED);
@@ -52,6 +52,10 @@ public class ServerListeningThread extends Thread {
             owner.addConversation(c);
             data.setCode(Commands.DH_KEYS);
             redirectMessage(data);
+        } else if (code.equals(Commands.DH_RESPONSE_KEYS)) {
+            Conversation c = owner.findConversation(data.getIpAddress(), data.getFriendIPAddress());
+            c.setFriendKeyPair(data.getFriendKeys());
+            
         } else {
             redirectMessage(data);
         }

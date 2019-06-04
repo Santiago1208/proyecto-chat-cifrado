@@ -56,7 +56,18 @@ public class ServerFrame extends javax.swing.JFrame {
     }
     
     public void addConversation(Conversation c) {
-        
+        conversations.add(c);
+    }
+    
+    public Conversation findConversation(String ipAddress, String friendIPAddress) {
+        Conversation c = null;
+        for (int i = 0; i < conversations.size() && c == null; i++) {
+            Conversation current = conversations.get(i);
+            if (current.getLoggedIPAddress().equals(ipAddress) && current.getFriendIPAddress().equals(friendIPAddress)) {
+                c = current;
+            }
+        }
+        return c;
     }
 
     public void setConversations(ArrayList<Conversation> conversations) {

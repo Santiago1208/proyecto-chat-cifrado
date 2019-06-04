@@ -19,6 +19,12 @@ public class Conversation {
     
     private KeyAgreement commonKey;
 
+    public Conversation() {
+    
+    }
+    
+    
+
     public Conversation(String loggedIPAddress, String friendIPAddress) {
         this.loggedIPAddress = loggedIPAddress;
         this.friendIPAddress = friendIPAddress;

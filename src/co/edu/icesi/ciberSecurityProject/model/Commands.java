@@ -21,4 +21,6 @@ public class Commands {
     
     public final static String DH_KEYS = "DH_KEYS";
     
+    public final static String DH_RESPONSE_KEYS = "DH_RESPONSE_KEYS";
+    
 }

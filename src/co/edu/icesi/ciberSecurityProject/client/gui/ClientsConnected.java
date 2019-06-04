@@ -7,7 +7,6 @@ import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.IOException;
-import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 import java.security.KeyPair;
@@ -79,7 +78,7 @@ public class ClientsConnected extends javax.swing.JFrame {
         });
     }
     
-    private KeyPair generateKeyPair() throws NoSuchAlgorithmException {
+    public KeyPair generateKeyPair() throws NoSuchAlgorithmException {
         KeyPairGenerator keyGenerator = KeyPairGenerator.getInstance("DH");
         keyGenerator.initialize(1024);
         KeyPair pair = keyGenerator.generateKeyPair();
@@ -99,6 +98,12 @@ public class ClientsConnected extends javax.swing.JFrame {
 
         // ClientChat nuevoChat = new ClientChat(onlineUserList().get(index));
     }
+
+    public User getUserLoggedIn() {
+        return userLoggedIn;
+    }
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
