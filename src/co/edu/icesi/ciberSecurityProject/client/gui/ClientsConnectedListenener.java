@@ -41,7 +41,7 @@ public class ClientsConnectedListenener extends Thread {
         String code = data.getCode();
         if (code.equals(Commands.DH_KEYS)) {
             KeyPair keyPair = cc.generateKeyPair();
-            
+            // TODO Quedé por acá....
             ObjectOutputStream out = new ObjectOutputStream(channel.getOutputStream());
             data.setFriendKeys(keyPair);
             data.setCode(Commands.DH_RESPONSE_KEYS);
