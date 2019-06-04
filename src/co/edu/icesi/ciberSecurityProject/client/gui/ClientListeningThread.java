@@ -2,6 +2,7 @@ package co.edu.icesi.ciberSecurityProject.client.gui;
 
 import co.edu.icesi.ciberSecurityProject.model.Commands;
 import co.edu.icesi.ciberSecurityProject.model.ConversationDataPackage;
+import co.edu.icesi.ciberSecurityProject.model.User;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -17,9 +18,12 @@ import java.util.logging.Logger;
 public class ClientListeningThread extends Thread {
     
     private ClientChat owner;
+    
+    private User logged;
 
-    public ClientListeningThread(ClientChat owner) {
+    public ClientListeningThread(ClientChat owner, User logged) {
         this.owner = owner;
+        this.logged = logged;
     }
 
     @Override
@@ -30,7 +34,6 @@ public class ClientListeningThread extends Thread {
             ObjectInputStream in = new ObjectInputStream(channel.getInputStream());
             ConversationDataPackage data = (ConversationDataPackage) in.readObject();
             processCommand(data);
-            
         } catch (IOException ex) {
             Logger.getLogger(ClientListeningThread.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
@@ -41,7 +44,7 @@ public class ClientListeningThread extends Thread {
     public void processCommand(ConversationDataPackage data) {
         String code = data.getCode();
         if (code.equals(Commands.START_CONVERSATION)) {
-            // Diffie Hellman
+            //
         } else {
             // desencriptar mensaje
             // concatenar mensaje a la vista
