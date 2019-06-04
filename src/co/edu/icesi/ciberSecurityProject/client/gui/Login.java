@@ -6,6 +6,7 @@
 package co.edu.icesi.ciberSecurityProject.client.gui;
 
 import co.edu.icesi.ciberSecurityProject.client.gui.ClientChat;
+import co.edu.icesi.ciberSecurityProject.server.ServerFrame;
 import java.text.ParseException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,15 +20,16 @@ import javax.swing.text.MaskFormatter;
  */
 public class Login extends javax.swing.JFrame {
 
-            ClientChat inter;
+            ServerFrame inter;
     
     /**
      * Creates new form login
      */
     public Login() {
         initComponents();
-            setLocationRelativeTo(null);
-  
+        setLocationRelativeTo(null);
+        setResizable(false);
+
         try {
             MaskFormatter mf = new MaskFormatter("###.###.###.###");
             jFormattedTextField1 = new JFormattedTextField(mf);
@@ -87,8 +89,8 @@ public class Login extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(194, 194, 194)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(326, Short.MAX_VALUE))
-            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -131,8 +133,9 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        inter = new ClientChat();
-        inter.setVisible(rootPaneCheckingEnabled);
+        inter = new ServerFrame();
+        inter.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public static void main(String args[]) {

@@ -20,6 +20,10 @@ public class ClientChat extends javax.swing.JFrame {
           
     }
 
+    public void messageConcatenation(String message){
+        messageHistory.append(message+"\n");
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -30,7 +34,7 @@ public class ClientChat extends javax.swing.JFrame {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        messageHistory = new javax.swing.JTextArea();
         jButton1 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea2 = new javax.swing.JTextArea();
@@ -42,17 +46,18 @@ public class ClientChat extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jTextArea1.setEditable(false);
-        jTextArea1.setColumns(20);
-        jTextArea1.setLineWrap(true);
-        jTextArea1.setRows(5);
-        jTextArea1.setWrapStyleWord(true);
-        jScrollPane1.setViewportView(jTextArea1);
+        messageHistory.setEditable(false);
+        messageHistory.setColumns(20);
+        messageHistory.setLineWrap(true);
+        messageHistory.setRows(5);
+        messageHistory.setWrapStyleWord(true);
+        jScrollPane1.setViewportView(messageHistory);
 
         jButton1.setBackground(new java.awt.Color(255, 0, 42));
         jButton1.setText("Desloguear");
 
         jTextArea2.setColumns(20);
+        jTextArea2.setLineWrap(true);
         jTextArea2.setRows(5);
         jScrollPane2.setViewportView(jTextArea2);
 
@@ -124,8 +129,8 @@ public class ClientChat extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextArea messageHistory;
     // End of variables declaration//GEN-END:variables
 }
