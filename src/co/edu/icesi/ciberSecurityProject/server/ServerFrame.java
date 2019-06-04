@@ -1,5 +1,6 @@
 package co.edu.icesi.ciberSecurityProject.server;
 
+import co.edu.icesi.ciberSecurityProject.model.Commands;
 import co.edu.icesi.ciberSecurityProject.model.User;
 import java.util.ArrayList;
 import javax.swing.DefaultListModel;
@@ -38,7 +39,7 @@ public class ServerFrame extends javax.swing.JFrame {
     }
     
     public void updateUserList(User user){
-           if(user.getState().equals("online")){
+           if(user.getState().equals(Commands.CONNECTED)){
                listModel.addElement("user.nickname");
            }
            else if (user.getState().equals("offline")){
