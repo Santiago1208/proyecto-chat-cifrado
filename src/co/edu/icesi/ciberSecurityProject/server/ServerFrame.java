@@ -4,6 +4,12 @@
  * and open the template in the editor.
  */
 package co.edu.icesi.ciberSecurityProject.server;
+
+import java.util.ArrayList;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
+import javax.swing.ListModel;
+
 /**
  *
  * @author Santiago
@@ -11,21 +17,38 @@ package co.edu.icesi.ciberSecurityProject.server;
 public class ServerFrame extends javax.swing.JFrame {
 
     
+    private DefaultListModel listModel;
+
+
     
     /**
      * Creates new form ServerFrame
      */
     public ServerFrame() {
         initComponents();
+        listModel = new DefaultListModel();
+        jList1 = new JList(listModel);
     }
 
-    //cambiar a inglés signatura
+    public ArrayList onlineUserList(){
+        ArrayList list = new ArrayList();
+        ListModel model = jList1.getModel();
+
+        for(int i=0; i < model.getSize(); i++){
+        Object o =  model.getElementAt(i);
+        list.add((String)o);
+        }
+        return list;
+    }
+    
     public void updateUserList(User user){
            if(user.state.equals("online")){
-               jList1.
+               listModel.addElement("user.nickname");
            }
            else if (user.state.equals("offline")){
-            
+            DefaultListModel model = (DefaultListModel)jList1.getModel();
+            int index = model.indexOf(user.nickname);
+            listModel.remove(index);
            }
        }
     
